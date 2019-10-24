@@ -1,1 +1,28 @@
 // анимация перехода между роутами
+
+@keyframes moveToScreenEnter {
+  0% {
+    transform: translateX(-500px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes moveToScreenLeave {
+  0% {
+    position: absolute;
+  }
+  100% {
+    transform: translateX(-500px);
+    position: absolute;
+  }
+}
+
+.componentInMain-enter-active {
+  animation: moveToScreenEnter .4s linear;
+}
+
+.componentInMain-leave-active {
+  animation: moveToScreenLeave .3s ease-in;
+}

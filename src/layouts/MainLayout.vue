@@ -1,13 +1,14 @@
 <template>
   <div>
     <div class="app-main-layout">
-     
       <Navbar />
       <Sidebar />
 
       <main class="app-content">
         <div class="app-page">
-          <router-view />
+          <transition name="componentInMain">
+            <router-view />
+          </transition>
         </div>
       </main>
 
@@ -21,15 +22,15 @@
 </template>
 
 <script>
-import Navbar from '@/components/app/Navbar'
-import Sidebar from  '@/components/app/Sidebar'
+import Navbar from "@/components/app/Navbar";
+import Sidebar from "@/components/app/Sidebar";
 
 export default {
-  name: 'mainlayout',
+  name: "mainlayout",
 
   components: {
     Navbar,
     Sidebar
   }
-}
+};
 </script>
