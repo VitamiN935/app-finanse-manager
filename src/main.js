@@ -2,9 +2,15 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import dateFilter from '@/filters/date.filter'
+import messagePlugin from '@/plugins/message.plugin'
+import 'materialize-css/dist/js/materialize.min'
 import './registerServiceWorker'
 
 Vue.config.productionTip = false
+
+Vue.use(messagePlugin);
+Vue.filter('date', dateFilter);
 
 new Vue({
   router,
