@@ -27,4 +27,5 @@ export default {
 <style lang="scss">
 @import '~materialize-css/sass/materialize.scss';
 @import '@/assets/style.scss';
+@import '@/assets/animate.scss';
 </style>
