@@ -2,10 +2,10 @@
   <nav class="navbar green lighten-1">
     <div class="nav-wrapper">
       <div class="navbar-left">
-        <a href="#">
+        <a href="#" @click.prevent="$emit('changeIsOpen')">
           <i class="material-icons black-text">dehaze</i>
         </a>
-        <span class="black-text">12.12.12</span>
+        <span class="black-text">{{date}}</span>
       </div>
 
       <ul class="right hide-on-small-and-down">
@@ -33,3 +33,20 @@
     </div>
   </nav>
 </template>
+
+<script>
+export default {
+  name: 'navbar',
+
+  data() {
+    return {
+      date: new Date(),
+      dateIdInterval: null
+    }
+  },
+
+  mounted() {
+    this.dateIdInterval = setInterval(() => this.date = new Date(), 1000);
+  }
+}
+</script>

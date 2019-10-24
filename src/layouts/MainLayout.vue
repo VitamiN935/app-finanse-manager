@@ -1,10 +1,13 @@
 <template>
   <div>
     <div class="app-main-layout">
-      <Navbar />
-      <Sidebar />
+      <Navbar @changeIsOpen='isOpenSidebar = !isOpenSidebar'/>
+      <Sidebar :isOpenSidebar='isOpenSidebar'/>
 
-      <main class="app-content">
+      <main 
+      class="app-content"
+      :class="{full: !isOpenSidebar}"
+      >
         <div class="app-page">
           <transition name="componentInMain">
             <router-view />
@@ -13,9 +16,9 @@
       </main>
 
       <div class="fixed-action-btn">
-        <a class="btn-floating btn-large blue" href="#">
+        <router-link class="btn-floating btn-large blue" to="/record">
           <i class="large material-icons">add</i>
-        </a>
+        </router-link>
       </div>
     </div>
   </div>
@@ -31,6 +34,12 @@ export default {
   components: {
     Navbar,
     Sidebar
-  }
+  },
+
+  data() {
+    return {
+      isOpenSidebar: true
+    }
+  },
 };
 </script>

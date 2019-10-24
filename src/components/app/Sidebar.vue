@@ -1,5 +1,5 @@
 <template>
-  <ul class="sidenav app-sidenav open">
+  <ul class="sidenav app-sidenav" :class="{open: isOpenSidebar}">
     <router-link 
     v-for="link of links"
     :key="link.title"
@@ -14,6 +14,10 @@
 <script>
 export default {
   name: 'sidebar',
+
+  props: {
+    isOpenSidebar: Boolean
+  },
 
   data() {
     return {
