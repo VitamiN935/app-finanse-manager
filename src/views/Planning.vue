@@ -2,7 +2,7 @@
   <div>
     <div class="page-title">
       <h3>Планирование</h3>
-      <h4>12 212</h4>
+      <h4>{{info.money | currency}}</h4>
     </div>
 
     <Loader v-if="loading" />
@@ -37,6 +37,10 @@ export default {
 
   components: {
     Loader
+  },
+
+  computed: {
+    ...mapGetters(['info'])
   },
 
   data() {
