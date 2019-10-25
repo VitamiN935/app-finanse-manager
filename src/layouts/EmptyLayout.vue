@@ -8,6 +8,7 @@
 
 <script>
 import { mapGetters } from "vuex";
+import messages from "@/plugins/messages";
 
 export default {
   name: "emptylayout",

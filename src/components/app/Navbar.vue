@@ -11,7 +11,7 @@
       <ul class="right hide-on-small-and-down">
         <li>
           <a class="dropdown-trigger black-text" href="#" data-target="dropdown" ref="trigger">
-            USER NAME
+            {{info.name}}
             <i class="material-icons right">arrow_drop_down</i>
           </a>
 
@@ -35,6 +35,8 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex';
+
 export default {
   name: 'navbar',
 
@@ -44,6 +46,10 @@ export default {
       dateIdInterval: null,
       dropdown: null
     }
+  },
+
+  computed: {
+    ...mapGetters(['info'])
   },
 
   mounted() {
