@@ -14,7 +14,7 @@
       </div>
 
       <section>
-        <HistoryTable :records="items" />
+        <HistoryTable :records="items" :page='page'/>
         <Pagination
           v-model='page'
           :page-count="pageCount"

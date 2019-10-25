@@ -24,7 +24,7 @@
           >{{record.typeText}}</span>
         </td>
         <td>
-          <router-link class="btn-small btn" tag="button" :to="{name: 'detail', params: {id: record.id}}">
+          <router-link class="btn-small btn" tag="button" :to="{name: 'detail', params: {id: record.id, page: page}}">
             <i class="material-icons">open_in_new</i>
           </router-link>
         </td>
@@ -41,7 +41,8 @@ export default {
     records: {
       type: Array,
       required: true
-    }
+    },
+    page: Number
   },
   
 };

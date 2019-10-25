@@ -3,7 +3,7 @@ import _ from 'lodash'
 export default {
   data() {
     return {
-      page: +this.$route.params.page || 1,
+      page: +this.$route.query.page || 1,
       pageSize: 5,
       pageCount: 1,
       allItems: [],

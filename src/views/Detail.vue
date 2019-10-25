@@ -2,7 +2,7 @@
   <div>
     <div>
       <div class="breadcrumb-wrap">
-        <router-link to="/history" class="breadcrumb">История</router-link>
+        <router-link :to="`/history?page=${$route.params.page}`" class="breadcrumb">История</router-link>
         <a class="breadcrumb" v-if="!loading && Object.keys(record).length">{{record.type === 'outcome' ? 'Расход' : 'Доход'}}</a>
       </div>
       <Loader v-if='loading'/>

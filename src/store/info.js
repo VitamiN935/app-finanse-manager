@@ -31,6 +31,7 @@ export default {
         throw e;
       }
     },
+    
     async updateInfo({ commit, dispatch, getters }, data) {
       try {
         const uid = await dispatch('getUId');
