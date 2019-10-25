@@ -83,6 +83,10 @@ import ct from "@/script/const";
 export default {
   name: "register",
 
+  metaInfo: {
+    title: `Регистрация | ${process.env.VUE_APP_TITLE}`
+  },
+
   data() {
     return {
       email: "",

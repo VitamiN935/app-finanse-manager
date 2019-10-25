@@ -80,6 +80,10 @@ import ct from "@/script/const";
 export default {
   name: "record",
 
+  metaInfo: {
+    title: `Новая запись | ${process.env.VUE_APP_TITLE}`
+  },
+
   components: {
     Loader
   },

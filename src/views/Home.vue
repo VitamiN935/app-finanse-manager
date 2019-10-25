@@ -50,3 +50,13 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  name: "home",
+
+  metaInfo: {
+    title: `Счет | ${process.env.VUE_APP_TITLE}`
+  }
+};
+</script>

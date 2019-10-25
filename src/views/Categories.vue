@@ -25,6 +25,10 @@ import Loader from "@/components/app/Loader";
 export default {
   name: "categories",
 
+  metaInfo: {
+    title: `Категории | ${process.env.VUE_APP_TITLE}`
+  },
+
   components: {
     CategoryCreate,
     CategoryEdit,

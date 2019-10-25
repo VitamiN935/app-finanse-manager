@@ -6,16 +6,16 @@
 
     <form class="form" @submit.prevent="updateInfo">
       <div class="input-field">
-        <input 
-        id="description" 
-        type="text" 
-        v-model.trim="name"
-        :class="{invalid: $v.name.$dirty && !$v.name.required}" 
+        <input
+          id="description"
+          type="text"
+          v-model.trim="name"
+          :class="{invalid: $v.name.$dirty && !$v.name.required}"
         />
         <label for="description">Имя</label>
-        <span 
-        class="helper-text invalid"
-        v-if="$v.name.$dirty && !$v.name.required"
+        <span
+          class="helper-text invalid"
+          v-if="$v.name.$dirty && !$v.name.required"
         >Введите имя или никнейм</span>
       </div>
 
@@ -42,6 +42,10 @@ import { required } from "vuelidate/src/validators";
 
 export default {
   name: "profile",
+
+  metaInfo: {
+    title: `Личный кабинет | ${process.env.VUE_APP_TITLE}`
+  },
 
   computed: {
     ...mapGetters(["info"])
@@ -78,7 +82,7 @@ export default {
 
       try {
         await this.$store.dispatch("updateInfo", formData);
-        this.$message('Персональные данные обновлены');
+        this.$message("Персональные данные обновлены");
       } catch (e) {}
     }
   }

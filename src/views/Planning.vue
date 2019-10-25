@@ -35,6 +35,10 @@ import currencyFilter from '@/filters/currency.filter'
 export default {
   name: "planning",
 
+  metaInfo: {
+    title: `Планирование | ${process.env.VUE_APP_TITLE}`
+  },
+
   components: {
     Loader
   },

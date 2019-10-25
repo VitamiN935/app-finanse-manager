@@ -65,6 +65,10 @@ import ct from "@/script/const";
 export default {
   name: "login",
 
+  metaInfo: {
+    title: `Вход | ${process.env.VUE_APP_TITLE}`
+  },
+
   data() {
     return {
       email: "",

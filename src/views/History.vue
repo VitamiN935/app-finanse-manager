@@ -38,6 +38,10 @@ import PaginationMixin from "@/mixins/paginate.mixin";
 export default {
   name: "history",
 
+  metaInfo: {
+    title: `История | ${process.env.VUE_APP_TITLE}`
+  },
+
   mixins: [Pie, PaginationMixin],
 
   components: {

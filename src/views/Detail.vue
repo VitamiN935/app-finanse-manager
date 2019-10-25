@@ -30,6 +30,10 @@ import Loader from "@/components/app/Loader";
 export default {
   name: "detail",
 
+  metaInfo: {
+    title: `Информация о записи | ${process.env.VUE_APP_TITLE}`
+  },
+
   components: {
     Loader
   },
