@@ -74,7 +74,7 @@
 import Loader from "@/components/app/Loader";
 import { mapGetters } from "vuex";
 import { required, minValue } from "vuelidate/lib/validators";
-import currencyFilter from '@/filters/currency.filter'
+import currencyFilter from "@/filters/currency.filter";
 import ct from "@/script/const";
 
 export default {
@@ -106,13 +106,15 @@ export default {
   },
 
   async mounted() {
-    this.categories = await this.$store.dispatch("fetchCategories");
-    this.loading = false;
-    if (this.categories.length) this.currentSelect = this.categories[0].id;
-    setTimeout(() => {
-      this.select = M.FormSelect.init(this.$refs.select);
-      M.updateTextFields();
-    }, 0);
+    try {
+      this.categories = await this.$store.dispatch("fetchCategories");
+      this.loading = false;
+      if (this.categories.length) this.currentSelect = this.categories[0].id;
+      setTimeout(() => {
+        this.select = M.FormSelect.init(this.$refs.select);
+        M.updateTextFields();
+      }, 0);
+    } catch (e) {}
   },
 
   beforeDestroy() {
@@ -127,7 +129,11 @@ export default {
       }
 
       if (this.type === "outcome" && this.info.money - this.amount < 0) {
-        this.$error(`Недостаточно средств ${currencyFilter(Math.abs(this.info.money - this.amount))}`);
+        this.$error(
+          `Недостаточно средств ${currencyFilter(
+            Math.abs(this.info.money - this.amount)
+          )}`
+        );
       } else {
         const formData = {
           categoryId: this.currentSelect,
@@ -137,11 +143,14 @@ export default {
           date: new Date().toJSON()
         };
 
-        const money = this.type === 'outcome' ? this.info.money - this.amount : this.info.money + this.amount;
+        const money =
+          this.type === "outcome"
+            ? this.info.money - this.amount
+            : this.info.money + this.amount;
 
         try {
           await this.$store.dispatch("createRecord", formData);
-          await this.$store.dispatch('updateInfo', {money});
+          await this.$store.dispatch("updateInfo", { money });
           this.$message("Запись добавлена");
 
           this.amount = ct.MIN_VALUE_RECORD;
