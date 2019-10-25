@@ -7,15 +7,21 @@
 </template>
 
 <script>
-import messages from '@/plugins/messages'
+import { mapGetters } from "vuex";
+import messages from "@/plugins/messages";
 
 export default {
-  name: 'emptylayout',
+  name: "emptylayout",
 
-  mounted() {
-    if (messages[this.$route.query.message]) {
-      this.$message(messages[this.$route.query.message], 'grey darken-3');
-    }
+  computed: {
+    ...mapGetters(["error"])
   },
-}
+
+  watch: {
+    error(error) {
+      this.$error(messages[error.code] || 'Что-то пошло не так', "grey darken-3");
+      console.log(error);
+    }
+  }
+};
 </script>

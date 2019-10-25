@@ -188,3 +188,14 @@
   max-width: 600px;
   margin: 0 auto
 }
+
+.pg {
+  text-align: center;
+  & .active {
+    background-color: #3bcb43 !important;
+  }
+}
+
+.switch {
+  margin: 20px 0 40px;
+}
