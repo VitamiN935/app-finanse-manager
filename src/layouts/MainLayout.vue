@@ -27,6 +27,7 @@
 <script>
 import Navbar from "@/components/app/Navbar";
 import Sidebar from "@/components/app/Sidebar";
+import { mapGetters } from "vuex";
 
 export default {
   name: "mainlayout",
@@ -40,6 +41,21 @@ export default {
     return {
       isOpenSidebar: true
     }
+  },
+
+  computed: {
+    ...mapGetters(["error"])
+  },
+
+  watch: {
+    error(error) {
+      this.$error(messages[error.code] || 'Что-то пошло не так', "grey darken-3");
+      console.log(error);
+    }
+  },
+
+  async mounted() {
+    await this.$store.dispatch('fetchInfo');
   },
 };
 </script>

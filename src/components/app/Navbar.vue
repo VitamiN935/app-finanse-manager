@@ -59,6 +59,7 @@ export default {
   methods: {
     logout() {
       this.$router.push('/login?message=logout');
+      this.$store.commit('clearInfo');
     }
   },
 }

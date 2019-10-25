@@ -4,66 +4,61 @@
       <span class="card-title">Домашняя бухгалтерия</span>
 
       <div class="input-field">
-        <input 
-        id="email" 
-        type="text" 
-        class="validate"
-        v-model.trim="email"
-        :class="{invalid: ($v.email.$dirty && !$v.email.required || $v.email.$dirty && !$v.email.email)}"
+        <input
+          id="email"
+          type="text"
+          class="validate"
+          v-model.trim="email"
+          :class="{invalid: ($v.email.$dirty && !$v.email.required || $v.email.$dirty && !$v.email.email)}"
         />
         <label for="email">Email</label>
-        <small 
-        class="helper-text invalid"
-        v-if="$v.email.$dirty && !$v.email.required"
+        <small
+          class="helper-text invalid"
+          v-if="$v.email.$dirty && !$v.email.required"
         >Введите email</small>
-        <small 
-        class="helper-text invalid"
-        v-else-if="$v.email.$dirty && !$v.email.email"
+        <small
+          class="helper-text invalid"
+          v-else-if="$v.email.$dirty && !$v.email.email"
         >Некорректный email</small>
       </div>
 
       <div class="input-field">
-        <input 
-        id="password" 
-        type="password" 
-        class="validate" 
-        v-model.trim="password"
-        :class="{invalid: ($v.password.$dirty && !$v.password.required || $v.password.$dirty && !$v.password.minLength)}"
+        <input
+          id="password"
+          type="password"
+          class="validate"
+          v-model.trim="password"
+          :class="{invalid: ($v.password.$dirty && !$v.password.required || $v.password.$dirty && !$v.password.minLength)}"
         />
         <label for="password">Пароль</label>
-        <small 
-        class="helper-text invalid"
-        v-if="$v.password.$dirty && !$v.password.required"
+        <small
+          class="helper-text invalid"
+          v-if="$v.password.$dirty && !$v.password.required"
         >Укажите пароль</small>
-        <small 
-        class="helper-text invalid"
-        v-if="$v.password.$dirty && !$v.password.minLength"
-        >Минимальное количество {{$v.password.$params.minLength.min}} символов. Введено {{password.length}}
-        </small>
+        <small
+          class="helper-text invalid"
+          v-if="$v.password.$dirty && !$v.password.minLength"
+        >Минимальное количество {{$v.password.$params.minLength.min}} символов. Введено {{password.length}}</small>
       </div>
 
       <div class="input-field">
-        <input 
-        id="name" 
-        type="text" 
-        class="validate"
-        v-model.trim="name"
-        :class="{invalid: $v.name.$dirty && !$v.name.required}"
-         />
+        <input
+          id="name"
+          type="text"
+          class="validate"
+          v-model.trim="name"
+          :class="{invalid: $v.name.$dirty && !$v.name.required}"
+        />
         <label for="name">Имя</label>
-        <small 
-        class="helper-text invalid"
-        v-if="$v.name.$dirty && !$v.name.required"
-        >Введите имя</small>
+        <small class="helper-text invalid" v-if="$v.name.$dirty && !$v.name.required">Введите имя</small>
       </div>
 
       <p>
         <label>
-          <input type="checkbox" v-model="agree"/>
+          <input type="checkbox" v-model="agree" />
           <span>С правилами согласен</span>
         </label>
       </p>
-
     </div>
     <div class="card-action">
       <div>
@@ -82,19 +77,19 @@
 </template>
 
 <script>
-import {required, minLength, email} from 'vuelidate/lib/validators'
-import ct from '@/script/const'
+import { required, minLength, email } from "vuelidate/lib/validators";
+import ct from "@/script/const";
 
 export default {
-  name: 'register',
+  name: "register",
 
   data() {
     return {
-      email: '',
-      password: '',
-      name: '',
-      agree: false,
-    }
+      email: "",
+      password: "",
+      name: "",
+      agree: false
+    };
   },
 
   validations: {
@@ -121,8 +116,19 @@ export default {
         return;
       }
 
-      this.$router.push('/');
+      const formData = {
+        email: this.email,
+        password: this.password,
+        name: this.name,
+        money: 10000,
+        locale: 'ru-RU'
+      }
+
+      try {
+        await this.$store.dispatch("register", formData);
+        this.$router.push("/");
+      } catch (e) {}
     }
-  },
-}
+  }
+};
 </script>

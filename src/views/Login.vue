@@ -59,6 +59,7 @@
 
 <script>
 import { required, minLength, email } from "vuelidate/lib/validators";
+import messages from "@/plugins/messages";
 import ct from "@/script/const";
 
 export default {
@@ -80,6 +81,12 @@ export default {
     password: {
       minLength: minLength(ct.MIN_LENGTH_PASSWORD),
       required
+    }
+  },
+
+  mounted() {
+    if (messages[this.$route.query.message]) {
+      this.$message(messages[this.$route.query.message], "grey darken-3");
     }
   },
 
