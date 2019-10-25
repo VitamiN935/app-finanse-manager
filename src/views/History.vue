@@ -3,41 +3,58 @@
     <div class="page-title">
       <h3>История записей</h3>
     </div>
+    <Loader v-if="loading" />
+    <p class="center" v-else-if="!records.length">
+      Записи не найдены ->
+      <router-link to="/record">Добавить запись</router-link>
+    </p>
+    <template v-else>
+      <div class="history-chart">
+        <canvas></canvas>
+      </div>
 
-    <div class="history-chart">
-      <canvas></canvas>
-    </div>
-
-    <section>
-      <table>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Сумма</th>
-            <th>Дата</th>
-            <th>Категория</th>
-            <th>Тип</th>
-            <th>Открыть</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>1212</td>
-            <td>12.12.32</td>
-            <td>name</td>
-            <td>
-              <span class="white-text badge red">Расход</span>
-            </td>
-            <td>
-              <button class="btn-small btn">
-                <i class="material-icons">open_in_new</i>
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
+      <section>
+        <HistoryTable :records='records'/>
+      </section>
+    </template>
   </div>
 </template>
+
+<script>
+import Loader from "@/components/app/Loader";
+import HistoryTable from "@/components/HistoryTable";
+
+export default {
+  name: "history",
+
+  components: {
+    Loader,
+    HistoryTable
+  },
+
+  data() {
+    return {
+      loading: true,
+      records: []
+    };
+  },
+
+  async mounted() {
+    try {
+      const categories = await this.$store.dispatch("fetchCategories");
+      const records = await this.$store.dispatch("fetchRecords");
+      this.loading = false;
+
+      this.records = records.map(record => {
+        const category = categories.find(c => c.id === record.categoryId);
+        return {
+          ...record,
+          categoryName: category.title,
+          color: record.type === 'outcome' ? 'red' : 'green',
+          typeText: record.type === 'outcome' ? 'Расход' : 'Доход'
+        }
+      })
+    } catch (e) {}
+  }
+};
+</script>

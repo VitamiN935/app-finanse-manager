@@ -28,7 +28,7 @@ export default {
       try {
         const uid = await dispatch('getUId');
         const category = (await firebase.database().ref(`/users/${uid}/categories`).child(id).once('value'));
-        return {...category.val(), id: category.key}
+        return {...category.val(), id: category.key};
       } catch (e) {
         commit('setError', e);
         throw e;
