@@ -12,6 +12,8 @@
 </template>
 
 <script>
+import localizeFilter from '@/filters/localize.filter'
+
 export default {
   name: 'sidebar',
 
@@ -22,11 +24,11 @@ export default {
   data() {
     return {
       links: [
-        {title: 'Счет', url: '/'},
-        {title: 'История', url: '/history'},
-        {title: 'Планирование', url: '/planning'},
-        {title: 'Новая запись', url: '/record'},
-        {title: 'Категории', url: '/categories'},
+        {title: localizeFilter("MenuHome"), url: '/'},
+        {title: localizeFilter("MenuHistory"), url: '/history'},
+        {title: localizeFilter("MenuPlanning"), url: '/planning'},
+        {title: localizeFilter("MenuNewRecord"), url: '/record'},
+        {title: localizeFilter("MenuCategories"), url: '/categories'},
       ]
     }
   },

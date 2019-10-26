@@ -1,14 +1,14 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>Планирование</h3>
+      <h3>{{"MenuPlanning" | localize}}</h3>
       <h4>{{info.money | currency}}</h4>
     </div>
 
     <Loader v-if="loading" />
     <p class="center" v-else-if="!categories.length">
-      Категории не найдены ->
-      <router-link to="/categories">Добавить категорию</router-link>
+      {{"Categories_not_found" | localize}} ->
+      <router-link to="/categories">{{"Add_category" | localize}}</router-link>
     </p>
     <section v-else>
       <div v-for="category of categories" :key="category.id">
@@ -30,13 +30,14 @@
 <script>
 import Loader from "@/components/app/Loader";
 import { mapGetters } from "vuex";
-import currencyFilter from '@/filters/currency.filter'
+import currencyFilter from '@/filters/currency.filter';
+import localizeFilter from '@/filters/localize.filter'
 
 export default {
   name: "planning",
 
   metaInfo: {
-    title: `Планирование | ${process.env.VUE_APP_TITLE}`
+    title: `${localizeFilter("MenuPlanning")} | ${process.env.VUE_APP_TITLE}`
   },
 
   components: {
