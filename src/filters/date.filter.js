@@ -1,3 +1,5 @@
+import store from '@/store';
+
 export default function dateFilter(value, format = 'date') {
   const options = {};
 
@@ -13,5 +15,5 @@ export default function dateFilter(value, format = 'date') {
     options.second = '2-digit';
   }
 
-  return Intl.DateTimeFormat('ru-RU', options).format(value);
+  return Intl.DateTimeFormat(store.getters.info.locale, options).format(value);
 }

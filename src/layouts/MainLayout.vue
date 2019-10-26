@@ -3,7 +3,7 @@
     <Loader v-if="loading"/>
     <div class="app-main-layout" v-else>
       <Navbar @changeIsOpen="isOpenSidebar = !isOpenSidebar" />
-      <Sidebar :isOpenSidebar="isOpenSidebar" />
+      <Sidebar :isOpenSidebar="isOpenSidebar" :key="info.locale || 'ru-RU'"/>
 
       <main class="app-content" :class="{full: !isOpenSidebar}">
         <div class="app-page">
@@ -46,7 +46,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["error"])
+    ...mapGetters(["error", 'info'])
   },
 
   watch: {

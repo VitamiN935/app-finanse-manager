@@ -1,12 +1,12 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>История записей</h3>
+      <h3>{{"History_Records" | localize}}</h3>
     </div>
     <Loader v-if="loading" />
     <p class="center" v-else-if="!records.length">
-      Записи не найдены ->
-      <router-link to="/record">Добавить запись</router-link>
+      {{"Records_not_found" | localize}} ->
+      <router-link to="/record">{{"Add_record" | localize}}</router-link>
     </p>
     <template v-else>
       <div class="history-chart">
@@ -19,8 +19,8 @@
           v-model='page'
           :page-count="pageCount"
           :click-handler="changePageHandler"
-          :prev-text="'Назад'"
-          :next-text="'Вперед'"
+          :prev-text="filterLocalize('Prev')"
+          :next-text="filterLocalize('Next')"
           :container-class="'pagination pg'"
         />
       </section>
@@ -34,6 +34,7 @@ import HistoryTable from "@/components/HistoryTable";
 import { Pie, mixins } from "vue-chartjs";
 import Pagination from "vuejs-paginate";
 import PaginationMixin from "@/mixins/paginate.mixin";
+import localizeFilter from '@/filters/localize.filter'
 
 export default {
   name: "history",
@@ -68,7 +69,7 @@ export default {
           ...record,
           categoryName: category.title,
           color: record.type === "outcome" ? "red" : "green",
-          typeText: record.type === "outcome" ? "Расход" : "Доход"
+          typeText: record.type === "outcome" ? localizeFilter("Outcome") : localizeFilter("Income")
         };
       });
 
@@ -118,6 +119,9 @@ export default {
       });
     },
 
+    filterLocalize(key) {
+      return localizeFilter(key);
+    }
   }
 };
 </script>

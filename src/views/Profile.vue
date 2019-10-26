@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>Профиль</h3>
+      <h3>{{"Profile" | localize}}</h3>
     </div>
 
     <form class="form" @submit.prevent="updateInfo">
@@ -12,11 +12,11 @@
           v-model.trim="name"
           :class="{invalid: $v.name.$dirty && !$v.name.required}"
         />
-        <label for="description">Имя</label>
+        <label for="description">{{"Name" | localize}}</label>
         <span
           class="helper-text invalid"
           v-if="$v.name.$dirty && !$v.name.required"
-        >Введите имя или никнейм</span>
+        >{{"Valid_Name" | localize}}</span>
       </div>
 
       <div class="switch">
@@ -29,7 +29,7 @@
       </div>
 
       <button class="btn waves-effect waves-light" type="submit">
-        Обновить
+        {{"Update" | localize}}
         <i class="material-icons right">send</i>
       </button>
     </form>
@@ -39,12 +39,13 @@
 <script>
 import { mapGetters } from "vuex";
 import { required } from "vuelidate/src/validators";
+import localizeFilter from '@/filters/localize.filter'
 
 export default {
   name: "profile",
 
   metaInfo: {
-    title: `Личный кабинет | ${process.env.VUE_APP_TITLE}`
+    title: `${localizeFilter("MetaProfile")} | ${process.env.VUE_APP_TITLE}`
   },
 
   computed: {

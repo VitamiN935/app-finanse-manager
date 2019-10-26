@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>Счет</h3>
+      <h3>{{"MenuHome" | localize}}</h3>
 
       <button class="btn waves-effect waves-light btn-small" @click="refresh">
         <i class="material-icons">refresh</i>
@@ -20,6 +20,7 @@
 import Loader from "@/components/app/Loader";
 import HomeYouMoney from "@/components/HomeYouMoney";
 import HomeCurrency from "@/components/HomeCurrency";
+import localizeFilter from '@/filters/localize.filter'
 
 export default {
   name: "home",
@@ -31,7 +32,7 @@ export default {
   },
 
   metaInfo: {
-    title: `Счет | ${process.env.VUE_APP_TITLE}`
+    title: `${localizeFilter("MenuHome")} | ${process.env.VUE_APP_TITLE}`
   },
 
   data() {

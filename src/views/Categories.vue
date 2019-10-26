@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>Категории</h3>
+      <h3>{{"CategoryTitle" | localize}}</h3>
     </div>
     <Loader v-if="loading" />
     <section v-else>
@@ -21,12 +21,13 @@
 import CategoryCreate from "@/components/CategoryCreate";
 import CategoryEdit from "@/components/CategoryEdit";
 import Loader from "@/components/app/Loader";
+import localizeFilter from '@/filters/localize.filter'
 
 export default {
   name: "categories",
 
   metaInfo: {
-    title: `Категории | ${process.env.VUE_APP_TITLE}`
+    title: `${localizeFilter("MenuCategories")} | ${process.env.VUE_APP_TITLE}`
   },
 
   components: {
